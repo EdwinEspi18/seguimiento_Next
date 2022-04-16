@@ -15,7 +15,6 @@ interface Props {
 }
 
 const PokemonNamePage: NextPage<Props> = ({ pokemon }) => {
-  console.log(pokemon);
   const [isInFavorite, setIsInFavorite] = useState(existFavorite(pokemon.id));
 
   const onToggleFavorite = (): void => {
@@ -63,8 +62,12 @@ const PokemonNamePage: NextPage<Props> = ({ pokemon }) => {
               <Text h1 transform='capitalize'>
                 {pokemon.name}
               </Text>
-              <Button color='gradient' ghost>
-                Guardar En Favoritos
+              <Button
+                color='gradient'
+                ghost={!isInFavorite}
+                onClick={onToggleFavorite}
+              >
+                {isInFavorite ? "En Favoritos" : "Guardar En Favoritos"}
               </Button>
             </Card.Header>
             <Card.Body>
